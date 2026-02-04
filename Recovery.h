@@ -1,6 +1,6 @@
 // Recovery.h
 // Workout Tracking System - Recovery Class
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #ifndef RECOVERY_H

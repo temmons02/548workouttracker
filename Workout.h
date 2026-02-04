@@ -1,6 +1,6 @@
 // Workout.h
 // Workout Tracking System - Workout Class
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #ifndef WORKOUT_H

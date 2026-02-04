@@ -1,6 +1,6 @@
 // Equipment.h
 // Workout Tracking System - Equipment Class
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #ifndef EQUIPMENT_H

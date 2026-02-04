@@ -1,6 +1,6 @@
 // Nutrition.cpp
 // Workout Tracking System - Nutrition Class Implementation
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #include "Nutrition.h"

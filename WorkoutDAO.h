@@ -1,6 +1,6 @@
 // WorkoutDAO.h
 // Workout Tracking System - Data Access Object
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #ifndef WORKOUTDAO_H

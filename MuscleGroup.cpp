@@ -1,6 +1,6 @@
 // MuscleGroup.cpp
 // Workout Tracking System - MuscleGroup Class Implementation
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #include "MuscleGroup.h"

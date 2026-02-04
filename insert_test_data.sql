@@ -1,6 +1,9 @@
 -- Workout Tracking System - Test Data Script
--- Author: Claude
+-- Author: Claude, Therin Emmons
 -- Date: 2026-01-28
+
+-- Sample Data to Make sure that everything works.
+
 
 -- Insert test data into MuscleGroup table
 INSERT INTO MuscleGroup (name, description, days_per_week, sets, reps, weight_amount) VALUES

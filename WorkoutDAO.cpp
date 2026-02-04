@@ -1,8 +1,7 @@
 // WorkoutDAO.cpp
-// Workout Tracking System - Data Access Object Implementation
-// Author: Claude
+// Workout Tracking System - Workout Class Implementation
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
-
 #include "WorkoutDAO.h"
 #include <iostream>
 #include <cstring>

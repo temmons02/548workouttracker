@@ -1,5 +1,5 @@
 # Makefile for Workout Tracking System
-# Author: Claude
+# Author: Claude, Therin Emmons
 # Date: 2026-01-28
 
 # Compiler settings

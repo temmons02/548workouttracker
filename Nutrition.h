@@ -1,6 +1,6 @@
 // Nutrition.h
 // Workout Tracking System - Nutrition Class
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #ifndef NUTRITION_H

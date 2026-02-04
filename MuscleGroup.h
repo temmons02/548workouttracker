@@ -1,6 +1,6 @@
 // MuscleGroup.h
 // Workout Tracking System - MuscleGroup Class
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #ifndef MUSCLEGROUP_H

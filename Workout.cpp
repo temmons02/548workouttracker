@@ -1,6 +1,6 @@
 // Workout.cpp
 // Workout Tracking System - Workout Class Implementation
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #include "Workout.h"

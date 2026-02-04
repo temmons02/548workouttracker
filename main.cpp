@@ -1,6 +1,6 @@
 // main.cpp
 // Workout Tracking System - Main Demonstration Program
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #include "WorkoutDAO.h"

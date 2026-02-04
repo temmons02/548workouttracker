@@ -1,6 +1,6 @@
 // Equipment.cpp
 // Workout Tracking System - Equipment Class Implementation
-// Author: Claude
+// Author: Claude, Therin Emmons
 // Date: 2026-01-28
 
 #include "Equipment.h"
