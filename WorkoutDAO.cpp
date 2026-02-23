@@ -22,16 +22,29 @@ WorkoutDAO::~WorkoutDAO() {
 }
 
 // Helper method to connect to database
+// Needed to modify the connection, if already connected
 bool WorkoutDAO::connect() {
-    if (!connection) {
-        connection = mysql_init(nullptr);
+    // Check if already connected - if so, just return true
+    if (connection && mysql_ping(connection) == 0) {
+        return true;  // Already connected and alive
     }
     
+    // Initialize if not already initialized
+    if (!connection) {
+        connection = mysql_init(nullptr);
+        if (!connection) {
+            std::cerr << "MySQL initialization failed!" << std::endl;
+            return false;
+        }
+    }
+    
+    // Only connect if not already connected
     if (!mysql_real_connect(connection, host.c_str(), user.c_str(),
                            password.c_str(), database.c_str(), port, nullptr, 0)) {
         handleError("Connection");
         return false;
     }
+    
     return true;
 }
 
