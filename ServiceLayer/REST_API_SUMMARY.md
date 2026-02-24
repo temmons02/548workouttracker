@@ -11,6 +11,7 @@ A complete **3-tier REST API architecture** for the Workout Tracking System:
 ## 📦 New Files Created
 
 ### Core REST API Files
+
 1. **JsonHelper.h** - JSON serialization utilities
    - Converts all 5 objects to JSON
    - Handles arrays and error responses
@@ -27,13 +28,14 @@ A complete **3-tier REST API architecture** for the Workout Tracking System:
    - Comprehensive output showing requests and responses
 
 ### Documentation & Scripts
-4. **REST_API_SETUP_GUIDE.md** - Complete setup guide
+
+1. **REST_API_SETUP_GUIDE.md** - Complete setup guide
    - Linux setup instructions
    - Windows setup instructions
    - Production deployment options
    - Troubleshooting section
 
-5. **build_rest_api.sh** - Automated build script
+2. **build_rest_api.sh** - Automated build script
    - Checks dependencies
    - Compiles server and client
    - Provides usage instructions
@@ -50,7 +52,7 @@ A complete **3-tier REST API architecture** for the Workout Tracking System:
 ┌────────▼─────────┐
 │   Controllers    │  (RestApiServer.cpp)
 │  - Workout       │  Port 8080
-│  - MuscleGroup   │  
+│  - MuscleGroup   │
 │  - Nutrition     │  ├─ GET /api/workouts
 │  - Recovery      │  ├─ GET /api/workouts/:id
 │  - Equipment     │  └─ POST /api/workouts
@@ -77,31 +79,37 @@ A complete **3-tier REST API architecture** for the Workout Tracking System:
 ## 🌐 REST API Endpoints
 
 ### Workout Controller
+
 - `GET  /api/workouts` - Get all workouts
-- `GET  /api/workouts/:id` - Get workout by ID  
+- `GET  /api/workouts/:id` - Get workout by ID
 - `POST /api/workouts` - Save workout (create/update)
 
 ### MuscleGroup Controller
+
 - `GET  /api/musclegroups` - Get all muscle groups
 - `GET  /api/musclegroups/:id` - Get muscle group by ID
 - `POST /api/musclegroups` - Save muscle group
 
 ### Nutrition Controller
+
 - `GET  /api/nutrition` - Get all nutrition entries
 - `GET  /api/nutrition/:id` - Get nutrition by ID
 - `POST /api/nutrition` - Save nutrition
 
 ### Recovery Controller
+
 - `GET  /api/recovery` - Get all recovery sessions
 - `GET  /api/recovery/:id` - Get recovery by ID
 - `POST /api/recovery` - Save recovery
 
 ### Equipment Controller
+
 - `GET  /api/equipment` - Get all equipment
 - `GET  /api/equipment/:id` - Get equipment by ID
 - `POST /api/equipment` - Save equipment
 
 ### Utility
+
 - `GET /health` - Health check
 - `GET /` - API documentation page
 
@@ -110,23 +118,27 @@ A complete **3-tier REST API architecture** for the Workout Tracking System:
 ## ✅ Requirements Satisfaction Check
 
 ### ✅ Business Layer
+
 - **Status:** COMPLETE (WorkoutManager)
 - **Coverage:** All DAO CRUD operations available through business methods
 - **Methods:** Save, Get, GetAll for all 5 objects
 
-### ✅ Service/Microservice Layer  
+### ✅ Service/Microservice Layer
+
 - **Status:** COMPLETE (RestApiServer)
 - **Coverage:** All business layer methods available through REST endpoints
 - **Technology:** cpp-httplib (lightweight HTTP server)
 - **Controllers:** 5 controllers (Workout, MuscleGroup, Nutrition, Recovery, Equipment)
 
 ### ✅ Hosting Instructions
+
 - **Status:** COMPLETE
 - **Linux:** Full instructions in RestApiServer.cpp comments and guide
 - **Windows:** Full Visual Studio setup in RestApiServer.cpp and guide
 - **Production:** systemd, nginx, Docker options provided
 
 ### ✅ Console Test Client
+
 - **Status:** COMPLETE (ApiClient.cpp)
 - **Tests:** Save, Get, GetAll for all 5 objects
 - **Coverage:** All 15 API endpoints tested
@@ -159,14 +171,14 @@ git clone https://github.com/yhirose/cpp-httplib.git
 sudo cp cpp-httplib/httplib.h /usr/local/include/
 
 # Compile server
-g++ -std=c++11 -I/usr/include/mysql -I/usr/local/include \
+g++ -std=c++17 -I/usr/include/mysql -I/usr/local/include \
     RestApiServer.cpp Workout.cpp MuscleGroup.cpp Nutrition.cpp \
     Recovery.cpp Equipment.cpp WorkoutDAO.cpp WorkoutManager.cpp \
     -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread \
     -o rest_api_server
 
 # Compile client
-g++ -std=c++11 -I/usr/local/include ApiClient.cpp -lpthread -o api_client
+g++ -std=c++17 -I/usr/local/include ApiClient.cpp -lpthread -o api_client
 
 # Run
 ./rest_api_server &
@@ -175,7 +187,7 @@ g++ -std=c++11 -I/usr/local/include ApiClient.cpp -lpthread -o api_client
 
 ### Windows (Visual Studio)
 
-1. Download httplib.h from https://github.com/yhirose/cpp-httplib
+1. Download httplib.h from <https://github.com/yhirose/cpp-httplib>
 2. Create two Console Application projects
 3. Configure MySQL paths in project properties
 4. Add all source files
@@ -186,12 +198,15 @@ See **REST_API_SETUP_GUIDE.md** for detailed instructions.
 ## 📝 Testing the API
 
 ### Method 1: Use the Console Client
+
 ```bash
 ./api_client
 ```
+
 Tests all 15 endpoints automatically!
 
 ### Method 2: Use curl
+
 ```bash
 # Health check
 curl http://localhost:8080/health
@@ -213,13 +228,16 @@ curl http://localhost:8080/api/equipment
 ```
 
 ### Method 3: Use a Web Browser
+
 Navigate to:
-- http://localhost:8080 (API documentation)
-- http://localhost:8080/api/workouts
-- http://localhost:8080/api/musclegroups
-- http://localhost:8080/health
+
+- <http://localhost:8080> (API documentation)
+- <http://localhost:8080/api/workouts>
+- <http://localhost:8080/api/musclegroups>
+- <http://localhost:8080/health>
 
 ### Method 4: Use Postman
+
 1. Open Postman
 2. Create requests for each endpoint
 3. Test GET and POST operations
@@ -229,11 +247,13 @@ Navigate to:
 The **ApiClient** tests each controller with these steps:
 
 For each of the 5 objects:
+
 1. **GET ALL** - Retrieves all records
 2. **SAVE** - Creates a new record via POST
 3. **GET BY ID** - Retrieves a specific record
 
 **Expected Output:**
+
 ```
 ╔════════════════════════════════════════════════════════════════╗
 ║     WORKOUT TRACKING SYSTEM - REST API CLIENT                  ║
@@ -290,6 +310,7 @@ Summary:
 ## 📊 API Response Format
 
 ### Success Response (Single Object)
+
 ```json
 {
   "workout_id": 1,
@@ -304,6 +325,7 @@ Summary:
 ```
 
 ### Success Response (Array)
+
 ```json
 [
   {"workout_id": 1, ...},
@@ -312,6 +334,7 @@ Summary:
 ```
 
 ### Success Response (Save)
+
 ```json
 {
   "success": true,
@@ -321,6 +344,7 @@ Summary:
 ```
 
 ### Error Response
+
 ```json
 {
   "error": "Workout not found"
@@ -330,22 +354,26 @@ Summary:
 ## 🚀 Production Deployment
 
 ### Option 1: Linux systemd Service
+
 ```bash
 sudo systemctl enable workout-api
 sudo systemctl start workout-api
 ```
 
 ### Option 2: nginx Reverse Proxy
+
 - API runs on localhost:8080
 - nginx forwards from port 80/443
 
 ### Option 3: Docker Container
+
 ```bash
 docker build -t workout-api .
 docker run -p 8080:8080 workout-api
 ```
 
 ### Option 4: Cloud Deployment
+
 - AWS EC2
 - Google Cloud Run
 - Azure App Service
@@ -356,6 +384,7 @@ See **REST_API_SETUP_GUIDE.md** for details.
 ## 📚 Documentation
 
 All documentation is included:
+
 1. **In-code comments** - Full hosting instructions in RestApiServer.cpp
 2. **REST_API_SETUP_GUIDE.md** - Complete setup guide
 3. **This summary** - Quick reference
@@ -363,6 +392,7 @@ All documentation is included:
 ## 🎓 Learning Resources
 
 The REST API demonstrates:
+
 - RESTful API design principles
 - HTTP methods (GET, POST)
 - JSON serialization
@@ -375,6 +405,7 @@ The REST API demonstrates:
 ## ✨ Next Steps / Enhancements
 
 Future improvements:
+
 1. ✅ Add proper JSON parsing library (nlohmann/json)
 2. ✅ Implement request body parsing
 3. ✅ Add authentication (JWT)
@@ -391,6 +422,7 @@ Future improvements:
 ## 🎉 Summary
 
 **You now have a complete REST API service layer with:**
+
 - ✅ 5 Controllers (one per object type)
 - ✅ 15 REST endpoints
 - ✅ Full hosting instructions (Linux & Windows)

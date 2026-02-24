@@ -69,11 +69,16 @@ fi
 
 echo ""
 echo "[3/5] Compiling API Client..."
-g++ -std=c++17 \
-    -I/usr/local/include \
-    ../ServiceLayer/ApiClient.cpp \
-    -lpthread \
-    -o api_client
+# g++ -std=c++17 \
+#    -I/usr/local/include \
+
+#    ../ServiceLayer/ApiClient.cpp \
+
+#    -lpthread \
+
+#    -o api_client
+
+g++ -std=c++17 -I/usr/local/include Crudfrontend.cpp -lpthread -o crud_frontend
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✓ API Client compiled successfully${NC}"
@@ -103,7 +108,7 @@ echo "  • api_client       - API test client ($(du -h api_client | cut -f1))"
 echo ""
 echo "To run:"
 echo "  1. Start server:  ./rest_api_server"
-echo "  2. Test client:   ./api_client  (in a new terminal)"
+echo "  2. Test client:   ./api_client(or ./crud_frontend for CLI) (in a new terminal)"
 echo ""
 echo "Test with curl:"
 echo "  curl http://localhost:8080/api/workouts"

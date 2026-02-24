@@ -85,21 +85,19 @@ ls -l /usr/local/include/httplib.h
 # Navigate to your project directory
 cd /path/to/workout-tracker
 
-# Compile the REST API server
-g++ -std=c++11 -I/usr/include/mysql -I/usr/local/include RestApiServer.cpp Workout.cpp MuscleGroup.cpp Nutrition.cpp Recovery.cpp Equipment.cpp WorkoutDAO.cpp WorkoutManager.cpp -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -o rest_api_server
+
+# Compile the REST API server (write in 'ServiceLayer' Directory)
+g++ -std=c++17 -I/usr/include/mysql -I/usr/local/include RestApiServer.cpp ../Workout.cpp ../MuscleGroup.cpp ../Nutrition.cpp ../Recovery.cpp ../Equipment.cpp ../WorkoutDAO.cpp ../BusinessLayer/WorkoutManager.cpp -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -o rest_api_server
 
 # Check if compilation succeeded
 ls -lh rest_api_server
 ```
 
-### Step 4: Compile the API Client
+### Step 4: Compile the API Client(USE Crudfrontend MENTIONED IN THE OTHER .md FILE)
 
 ```bash
 # Compile the API client
-g++ -std=c++11 \
-    -I/usr/local/include \
-    ApiClient.cpp \
-    -lpthread \
+g++ -std=c++17 -I/usr/local/include ApiClient.cpp -lpthread \
     -o api_client
 
 # Check if compilation succeeded
@@ -119,7 +117,7 @@ ls -lh api_client
 
 **The server is now running on port 8080!**
 
-### Step 6: Test with Client
+### Step 6: Test with Client(Also check out Crudfrontend documentation)
 
 Open a **new terminal** and run:
 

@@ -404,6 +404,123 @@ void saveEquipment(const httplib::Request& req, httplib::Response& res) {
     }
 }
 
+
+// ==================== WORKOUT DELETE ====================
+
+// DELETE /api/workouts/:id - Delete workout
+void deleteWorkout(const httplib::Request& req, httplib::Response& res) {
+    int id = std::stoi(req.path_params.at("id"));
+    std::cout << "[API] DELETE /api/workouts/" << id << std::endl;
+    
+    try {
+        bool success = manager->deleteWorkout(id);
+        
+        if (success) {
+            std::string json = JsonHelper::successResponse("Workout deleted successfully");
+            res.set_content(json, "application/json");
+            res.status = 200;
+        } else {
+            res.set_content(JsonHelper::errorResponse("Failed to delete workout"), "application/json");
+            res.status = 500;
+        }
+    } catch (const std::exception& e) {
+        res.set_content(JsonHelper::errorResponse(e.what()), "application/json");
+        res.status = 500;
+    }
+}
+
+// ==================== MUSCLEGROUP DELETE ====================
+
+// DELETE /api/musclegroups/:id - Delete muscle group
+void deleteMuscleGroup(const httplib::Request& req, httplib::Response& res) {
+    int id = std::stoi(req.path_params.at("id"));
+    std::cout << "[API] DELETE /api/musclegroups/" << id << std::endl;
+    
+    try {
+        bool success = manager->deleteMuscleGroup(id);
+        
+        if (success) {
+            res.set_content(JsonHelper::successResponse("MuscleGroup deleted successfully"), "application/json");
+            res.status = 200;
+        } else {
+            res.set_content(JsonHelper::errorResponse("Failed to delete muscle group"), "application/json");
+            res.status = 500;
+        }
+    } catch (const std::exception& e) {
+        res.set_content(JsonHelper::errorResponse(e.what()), "application/json");
+        res.status = 500;
+    }
+}
+
+// ==================== NUTRITION DELETE ====================
+
+// DELETE /api/nutrition/:id - Delete nutrition
+void deleteNutrition(const httplib::Request& req, httplib::Response& res) {
+    int id = std::stoi(req.path_params.at("id"));
+    std::cout << "[API] DELETE /api/nutrition/" << id << std::endl;
+    
+    try {
+        bool success = manager->deleteNutrition(id);
+        
+        if (success) {
+            res.set_content(JsonHelper::successResponse("Nutrition deleted successfully"), "application/json");
+            res.status = 200;
+        } else {
+            res.set_content(JsonHelper::errorResponse("Failed to delete nutrition"), "application/json");
+            res.status = 500;
+        }
+    } catch (const std::exception& e) {
+        res.set_content(JsonHelper::errorResponse(e.what()), "application/json");
+        res.status = 500;
+    }
+}
+
+// ==================== RECOVERY DELETE ====================
+
+// DELETE /api/recovery/:id - Delete recovery
+void deleteRecovery(const httplib::Request& req, httplib::Response& res) {
+    int id = std::stoi(req.path_params.at("id"));
+    std::cout << "[API] DELETE /api/recovery/" << id << std::endl;
+    
+    try {
+        bool success = manager->deleteRecovery(id);
+        
+        if (success) {
+            res.set_content(JsonHelper::successResponse("Recovery deleted successfully"), "application/json");
+            res.status = 200;
+        } else {
+            res.set_content(JsonHelper::errorResponse("Failed to delete recovery"), "application/json");
+            res.status = 500;
+        }
+    } catch (const std::exception& e) {
+        res.set_content(JsonHelper::errorResponse(e.what()), "application/json");
+        res.status = 500;
+    }
+}
+
+// ==================== EQUIPMENT DELETE ====================
+
+// DELETE /api/equipment/:id - Delete equipment
+void deleteEquipment(const httplib::Request& req, httplib::Response& res) {
+    int id = std::stoi(req.path_params.at("id"));
+    std::cout << "[API] DELETE /api/equipment/" << id << std::endl;
+    
+    try {
+        bool success = manager->deleteEquipment(id);
+        
+        if (success) {
+            res.set_content(JsonHelper::successResponse("Equipment deleted successfully"), "application/json");
+            res.status = 200;
+        } else {
+            res.set_content(JsonHelper::errorResponse("Failed to delete equipment"), "application/json");
+            res.status = 500;
+        }
+    } catch (const std::exception& e) {
+        res.set_content(JsonHelper::errorResponse(e.what()), "application/json");
+        res.status = 500;
+    }
+}
+
 // ==================== MAIN SERVER ====================
 
 int main() {
@@ -463,6 +580,13 @@ int main() {
     svr.Get("/health", [](const httplib::Request&, httplib::Response& res) {
         res.set_content("{\"status\":\"healthy\"}", "application/json");
     });
+
+    // Register DELETE endpoints
+    svr.Delete("/api/workouts/:id", deleteWorkout);
+    svr.Delete("/api/musclegroups/:id", deleteMuscleGroup);
+    svr.Delete("/api/nutrition/:id", deleteNutrition);
+    svr.Delete("/api/recovery/:id", deleteRecovery);
+    svr.Delete("/api/equipment/:id", deleteEquipment); 
     
     // Root endpoint
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) {
@@ -477,18 +601,22 @@ int main() {
 <li>GET /api/workouts - Get all workouts</li>
 <li>GET /api/workouts/:id - Get workout by ID</li>
 <li>POST /api/workouts - Save workout</li>
+<li>DELETE /api/workouts/:id - Delete workout</li>
 <li>GET /api/musclegroups - Get all muscle groups</li>
 <li>GET /api/musclegroups/:id - Get muscle group by ID</li>
 <li>POST /api/musclegroups - Save muscle group</li>
+<li>DELETE /api/musclegroups/:id - Delete muscle group</li>
 <li>GET /api/nutrition - Get all nutrition</li>
 <li>GET /api/nutrition/:id - Get nutrition by ID</li>
 <li>POST /api/nutrition - Save nutrition</li>
+<li>DELETE /api/nutrition/:id - Delete nutrition</li>
 <li>GET /api/recovery - Get all recovery</li>
 <li>GET /api/recovery/:id - Get recovery by ID</li>
 <li>POST /api/recovery - Save recovery</li>
 <li>GET /api/equipment - Get all equipment</li>
 <li>GET /api/equipment/:id - Get equipment by ID</li>
 <li>POST /api/equipment - Save equipment</li>
+<li>DELETE /api/equipment/:id - Delete equipment</li>
 <li>GET /health - Health check</li>
 </ul>
 </body>
