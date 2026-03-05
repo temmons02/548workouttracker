@@ -9,12 +9,12 @@
 
 // Constructor
 WorkoutManager::WorkoutManager(WorkoutDAO* dataAccess) : dao(dataAccess) {
-    std::cout << "[WorkoutManager] Initialized" << std::endl;
+    //std::cout << "[WorkoutManager] Initialized" << std::endl;
 }
 
 // Destructor
 WorkoutManager::~WorkoutManager() {
-    std::cout << "[WorkoutManager] Destroyed" << std::endl;
+    //std::cout << "[WorkoutManager] Destroyed" << std::endl;
 }
 
 // Helper method to log operations
@@ -31,14 +31,6 @@ bool WorkoutManager::testConnection() {
     return dao->testConnection();
 }
 
-// Cleanup vector helper
-template<typename T>
-void WorkoutManager::cleanupVector(std::vector<T*>& vec) {
-    for (auto* item : vec) {
-        delete item;
-    }
-    vec.clear();
-}
 
 // ==================== WORKOUT BUSINESS METHODS ====================
 

@@ -149,7 +149,12 @@ public:
     
     // Cleanup memory for vectors
     template<typename T>
-    void cleanupVector(std::vector<T*>& vec);
+    void cleanupVector(std::vector<T*>& vec) {
+        for (T* ptr : vec) {
+            delete ptr;
+        }
+        vec.clear();
+    }
 };
 
 #endif // WORKOUTMANAGER_H
