@@ -84,7 +84,7 @@ $(API_SERVER): $(SERVICE_DIR)/RestApiServer.cpp $(COMMON_SOURCES) | $(BUILD_DIR)
 frontend: $(CRUD_FRONTEND)
 
 # CRUD Frontend - ONLY compile CrudFrontEnd.cpp
-$(CRUD_FRONTEND): $(SERVICE_DIR)/CrudFrontEnd.cpp | $(BUILD_DIR)
+$(CRUD_FRONTEND): $(SERVICE_DIR)/CrudFrontEnd.cpp $(COMMON_SOURCES) | $(BUILD_DIR)
 	@echo "Building CRUD frontend..."
 	$(CXX) $(CXXFLAGS) $(SERVICE_DIR)/CrudFrontEnd.cpp \
 	-o $(CRUD_FRONTEND) -lpthread -lcurl
