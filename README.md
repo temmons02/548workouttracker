@@ -24,30 +24,20 @@ A comprehensive multi-layer C++ application with MySQL database for tracking wor
 
 ---
 
-## 🎯 Overview
+## Overview
 
 This application provides multiple interfaces for managing fitness data:
+
 - **🌐 Web Interface** (CGI) - Browser-based CRUD operations
 - **📡 REST API** - JSON endpoints for external integrations
 - **💻 Console Applications** - Command-line tools
 
 Built with a **four-layer architecture** ensuring clean separation of concerns, maintainability, and scalability.
 
-### Supported Entities
-
-| Entity | Fields | CRUD Status |
-|--------|--------|-------------|
-| **Workout** | Date, Time, Duration, Type, Calories, RPE, Muscle Group | ✅ Full |
-| **Muscle Group** | Name, Description, Days/Week, Sets, Reps, Weight | ✅ Full |
-| **Nutrition** | Food Family, Macros, Date | ⚠️ Partial |
-| **Recovery** | Date, Duration, Type, Helpers | ⚠️ Partial |
-| **Equipment** | Name, Description, Category, Target | ⚠️ Partial |
-
----
-
-## ✨ Features
+## Features
 
 ### 🎨 Web Interface
+
 - Modern gradient purple design
 - Responsive layout (mobile & desktop)
 - Real-time validation
@@ -55,6 +45,7 @@ Built with a **four-layer architecture** ensuring clean separation of concerns, 
 - Professional styling
 
 ### 🔧 Developer Features
+
 - Makefile-based build system
 - Modular architecture
 - Comprehensive error handling
@@ -62,6 +53,7 @@ Built with a **four-layer architecture** ensuring clean separation of concerns, 
 - Easy deployment
 
 ### 🛡️ Security & Validation
+
 - SQL injection prevention
 - HTML escaping
 - Multi-layer validation
@@ -69,7 +61,7 @@ Built with a **four-layer architecture** ensuring clean separation of concerns, 
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -100,9 +92,10 @@ Built with a **four-layer architecture** ensuring clean separation of concerns, 
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### Required
+
 - **OS:** Linux (Ubuntu 20.04+) or WSL
 - **Compiler:** g++ with C++17 (GCC 7.0+)
 - **Database:** MySQL 5.7+
@@ -113,6 +106,7 @@ Built with a **four-layer architecture** ensuring clean separation of concerns, 
   - cpp-httplib (header-only)
 
 ### Installation
+
 ```bash
 # Ubuntu/Debian
 sudo apt-get update
@@ -132,7 +126,7 @@ sudo wget -O /usr/local/include/httplib.h \
 
 ---
 
-## 🗄️ Database Setup
+## Database Setup
 
 ```bash
 # 1. Create database
@@ -160,9 +154,10 @@ mysql -u workout_user -pworkout_pass workout_tracker -e "SHOW TABLES;"
 
 ---
 
-## 🔨 Building
+## Building
 
 ### Quick Build
+
 ```bash
 # Build everything
 make all
@@ -172,6 +167,7 @@ make deploy
 ```
 
 ### Individual Components
+
 ```bash
 make core         # Main and test apps
 make api          # REST API server
@@ -180,6 +176,7 @@ make install-cgi  # Deploy CGI to Apache
 ```
 
 ### Useful Targets
+
 ```bash
 make clean        # Remove build artifacts
 make rebuild      # Clean and rebuild
@@ -189,9 +186,9 @@ make help         # Show all targets
 
 ---
 
-## 💻 Usage
+## Usage
 
-### 🌐 Web Application (CGI)
+### Web Application (CGI)
 
 ```bash
 # Ensure Apache is running
@@ -202,6 +199,7 @@ firefox http://localhost/cgi-bin/workout.cgi
 ```
 
 **Available URLs:**
+
 - Home: `http://localhost/cgi-bin/workout.cgi`
 - Workouts: `?action=list&table=workout`
 - Muscle Groups: `?action=list&table=musclegroup`
@@ -221,6 +219,7 @@ make run-server
 **Server runs on:** `http://localhost:8080`
 
 **Test endpoints:**
+
 ```bash
 # Health check
 curl http://localhost:8080/health
@@ -247,7 +246,7 @@ curl -X POST http://localhost:8080/api/workouts \
 curl -X DELETE http://localhost:8080/api/workouts/5
 ```
 
-### 💻 Console Applications
+### Console Applications
 
 ```bash
 # Main demo
@@ -262,17 +261,19 @@ make run-console
 
 ---
 
-## 📚 API Documentation
+## API Documentation
 
 ### REST Endpoints
 
 #### Health Check
+
 ```
 GET /health
 → {"status": "healthy", "database": "connected"}
 ```
 
 #### Workout Operations
+
 ```
 GET    /api/workouts        # List all
 GET    /api/workouts/:id    # Get one
@@ -280,7 +281,8 @@ POST   /api/workouts        # Create/Update
 DELETE /api/workouts/:id    # Delete
 ```
 
-#### Similar endpoints for:
+#### Similar endpoints for
+
 - `/api/musclegroups`
 - `/api/nutrition`
 - `/api/recovery`
@@ -325,44 +327,41 @@ if (workout) {
 
 ```
 workout-tracker/
-├── README.md
-├── Makefile
-├── create_tables.sql
-├── insert_test_data.sql
-│
-├── Root (Models + DAO)
-│   ├── main.cpp
-│   ├── Workout.h/cpp
-│   ├── MuscleGroup.h/cpp
-│   ├── Nutrition.h/cpp
-│   ├── Recovery.h/cpp
-│   ├── Equipment.h/cpp
-│   └── WorkoutDAO.h/cpp
-│
-├── BusinessLayer/
-│   ├── WorkoutManager.h/cpp
-│   ├── test_crud_app.cpp
-│   └── view_all_data.sql
-│
-├── ServiceLayer/
-│   ├── WorkoutService.h/cpp
-│   ├── RestApiServer.cpp
-│   ├── JsonHelper.h
-│   └── CrudFrontEnd.cpp
-│
-├── Front-EndLayer/
-│   └── workout_cgi.cpp
-│
-└── build/
-    ├── workout_tracker
-    ├── test_crud_app
-    ├── rest_api_server
-    └── console_app
+|__ Makefile                    # Build system
+|__ create_tables.sql          # Database schema
+|__ insert_test_data.sql       # Sample data
+|__ Workout.h/cpp
+|__ MuscleGroup.h/cpp
+|__ Nutrition.h/cpp
+|__ Recovery.h/cpp
+|__ Equipment.h/cpp
+|__ WorkoutDAO.h/cpp
+|__ main.cpp
+|
+|__ BusinessLayer/
+|   |__ WorkoutManager.h/cpp
+|   |__ test_crud_app.cpp
+|   |__ view_all_data.sql
+|
+|__ ServiceLayer/
+|  |__ WorkoutService.h/cpp
+|  |__ RestApiServer.cpp
+|  |__ JsonHelper.h
+|  |__ CrudFrontEnd.cpp
+|
+|__ Front-EndLayer/
+|   |__ workout_cgi.cpp        # CGI web application
+|
+|__ build/
+|    |__ workout_tracker        # Main executable
+|    |__ test_crud_app         # Test suite
+|    |__ rest_api_server       # REST API
+|    |__ console_app           # Service Layer console
 ```
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Database Connection Failed
 
@@ -383,12 +382,14 @@ FLUSH PRIVILEGES;
 ### Compilation Errors
 
 **Error:** `undefined reference to 'mysql_init'`
+
 ```bash
 sudo apt-get install libmysqlclient-dev
 make clean && make all
 ```
 
 **Error:** `multiple definition of 'main'`
+
 - Your Makefile is compiling multiple programs together
 - Use the corrected Makefile that compiles each separately
 
@@ -407,6 +408,7 @@ ldd /usr/lib/cgi-bin/workout.cgi | grep "not found"
 ```
 
 **Error:** `malformed header: Bad header`
+
 - Remove `std::cout` from constructors/destructors
 - Use `std::cerr` for logging instead
 - Check `WorkoutManager.cpp` and `WorkoutService.cpp`
@@ -440,34 +442,13 @@ sudo tail -f /var/log/mysql/error.log
 
 ---
 
-## 🤝 Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/name`
-3. Make changes and test: `make test`
-4. Commit: `git commit -m "Add feature"`
-5. Push: `git push origin feature/name`
-6. Create Pull Request
-
-### Code Style
-- Use C++17 features
-- 4-space indentation
-- Meaningful variable names
-- Comment complex logic
-- Handle all errors
-- Clean up memory
-
----
-
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **cpp-httplib** - HTTP library
 - **MySQL** - Database system
@@ -475,54 +456,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🗺️ Roadmap
-
-### Completed ✅
-- [x] Multi-layer architecture
-- [x] MySQL database integration
-- [x] REST API server
-- [x] CGI web interface
-- [x] Full CRUD for Workout & MuscleGroup
-- [x] Basic CRUD for other tables
-
-### Planned 📋
-- [ ] User authentication
-- [ ] View/Edit for all tables
-- [ ] Data visualization
-- [ ] Export to CSV/PDF
-- [ ] Mobile app
-- [ ] Progress tracking
-- [ ] Docker deployment
-
 ---
 
-## 📊 Performance
+**Made with C++17**
 
-- Database queries: < 10ms
-- REST API: < 50ms response
-- CGI pages: < 200ms load time
-- Memory: < 50MB per process
-- Concurrent requests: 100+
-
----
-
-## 🔒 Security Notes
-
-**Current:**
-- ✅ SQL injection prevention
-- ✅ HTML escaping
-- ✅ Input validation
-- ✅ Prepared statements
-
-**Recommended for Production:**
-- [ ] HTTPS/SSL
-- [ ] User authentication
-- [ ] Rate limiting
-- [ ] Environment variables for secrets
-- [ ] Security headers
-
----
-
-**Made with ❤️ and C++17**
-
-*Last Updated: March 2026*
+_Last Updated: March 2026_
